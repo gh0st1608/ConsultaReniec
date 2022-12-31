@@ -1,0 +1,57 @@
+version: '3.1'
+
+services:
+  mongo-app-ms:
+    image: mongo:3.6
+    container_name: mongo-app-ms
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-app-volume:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 12345
+    networks:
+      - net-app
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq-container
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: rabbitmq-diagnostic -q ping
+      interval: 20s
+      timeout: 10s
+      retries: 5
+      start_period: 2s
+    networks:
+      - net-app
+
+volumes:
+  mongo-app-volume:
+
+networks:
+  net-app:
+
+  #app-ms:
+  #  build:
+  #    dockerfile: backend/Dockerfile
+  #    context: .
+  #  image: image-app-ms
+  #  container_name: app-ms
+  #  ports:
+  #    - "9000:8000"
+  #  environment:
+  #    - PORT = "8000"
+  #    - MONGO_HOST = "mongo-app-ms"
+  #    - MONGO_PORT = 27017
+  #    - MONGO_USERNAME = "root"
+  #    - MONGO_PASSWORD = 12345
+  #  depends_on:
+  #    - mongo-app-ms
+  #  restart: always
+  #  networks:
+  #    - net-ms
+

@@ -1,0 +1,49 @@
+.service-item {
+    margin: 1rem;
+    width: calc(45% - 2rem);
+    min-width: 17.5rem;
+  }
+  
+  .service-item a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    padding: 1rem;
+    color: white;
+    background: #292929;
+  }
+  
+  .service-item a:hover,
+  .service-item a:active {
+    background: #ffd900;
+  }
+  
+  .service-item__content {
+    padding: 0;
+  }
+  
+  .service-item__image {
+    width: 4rem;
+    height: 4rem;
+    margin-right: 1rem;
+  }
+  
+  .service-item__info h2 {
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: normal;
+    color: #ffd900;
+  }
+  
+  .service-item:hover h2,
+  .service-item:active h2,
+  .service-item:hover h3,
+  .service-item:active h3 {
+    color: #292929;
+  }
+  
+  .service-item__info h3 {
+    margin: 0;
+  }
